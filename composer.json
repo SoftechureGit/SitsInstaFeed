@@ -1,0 +1,19 @@
+{
+    "name": "sits/sits-insta-feed",
+    "description": "for showing insta feed to users.",
+    "type": "library",
+    "license": "mit",
+    "autoload": {
+        "psr-4": {
+            "Sits\\SitsInstaFeed\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "uday",
+            "email": "uday.softechure@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
