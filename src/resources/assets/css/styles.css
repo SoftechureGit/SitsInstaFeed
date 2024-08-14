@@ -1,0 +1,60 @@
+
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: "Open Sans", sans-serif;
+    background: linear-gradient(#1a687eb8, #0f3d4ae0);
+}
+.heading{
+    font-family: "Playfair Display", serif;
+}
+.flex-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.instagram-button{
+    padding: 5px 25px;
+    border-radius: 10px;
+    border: 0;
+    color: white;
+    background: linear-gradient(45deg,#1c718a -10%,#103d4a );
+    text-decoration: none;
+    
+
+
+}
+.instagram-button:hover{
+    
+    background: linear-gradient(45deg,#103d4a -10.71%,#1c718a 117%);
+}
+
+.continue-with-insta{
+    justify-content: center;
+    height: 100vh;
+
+}
+
+.continue-with-insta .card-ontainer{
+    text-align: center;
+}
+
+.home-content{
+    border: 1px solid lightgrey;
+    border-radius: 19px;
+    padding: 98px 21px;
+    box-shadow: 0px 0px 23px 0px #525252;
+    background-color: aliceblue;
+}
+.home-content p{
+    text-align: center;
+    font-size: 16px;
+    font-weight: 500;
+    color: #1e1e1e;
+    margin-bottom: 4px;
+}

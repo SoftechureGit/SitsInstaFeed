@@ -35,6 +35,14 @@ class SitsInstaFeedServiceProvider extends ServiceProvider
     public function boot()
     {
         // Code to boot your package, e.g., load routes, views, etc.
+        $this->loadRoutesFrom(__DIR__.'/routes/web.php');
+        $this->loadViewsFrom(__DIR__.'/resources/views', 'sitsinstafeed');
+        $this->publishes([
+            __DIR__.'/resources/assets/css' => public_path('vendor/sits-insta-feed/css'),
+        ], 'public');
+        $this->publishes([
+            __DIR__.'/config/sits_insta_feed.php' => config_path('sits_insta_feed.php'),
+        ], 'config');
     }
 
     /**
