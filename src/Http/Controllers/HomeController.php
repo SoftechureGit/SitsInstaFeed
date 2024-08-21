@@ -12,8 +12,8 @@ class HomeController extends Controller
 {
    public function index(){
     //return $apiKey = config('sits_insta_feed.redirect_url');
-
-    return view('sitsinstafeed::insta-feed');
+    $apiToken = request()->filled('api_token') ? request()->input('api_token') : null;
+    return view('sitsinstafeed::insta-feed', compact('apiToken'));
    }
     
 }

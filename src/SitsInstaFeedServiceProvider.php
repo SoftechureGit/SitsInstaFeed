@@ -3,9 +3,16 @@
 namespace Sits\SitsInstaFeed;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Http;
 
 class SitsInstaFeedServiceProvider extends ServiceProvider
 {
+    
+    private $sitsApiBaseUrl;
+    private $apiToken;
+
+    // Constructor to initialize the properties
+    
     /**
      * Create a new service provider instance.
      *
@@ -15,6 +22,8 @@ class SitsInstaFeedServiceProvider extends ServiceProvider
     public function __construct($app)
     {
         parent::__construct($app);
+        $this->sitsApiBaseUrl = 'https://website4test.com/social_feed/socialFeed/api/';
+        $this->apiToken = config('sits_insta_feed.api_token');
     }
 
     /**
@@ -51,5 +60,71 @@ class SitsInstaFeedServiceProvider extends ServiceProvider
     public function justDoIt()
     {
         return 'Insta Feed Is Loading....';
+    }
+
+
+    public function getSitsFeedJson(){
+
+        $apiUrl    =   $this->sitsApiBaseUrl . 'sits-get-feed-json';
+
+        $response  =   Http::withHeaders([
+            'Authorization' => 'Bearer ' . $this->apiToken,
+            'Accept'        => 'application/json',
+        ])->post($apiUrl);
+
+        if ($response->successful()) {
+            $data  =    $response->json();
+            return response()->json($data, 200);
+        } else {
+            // Return a structured error response
+            return response()->json([
+                'error' => 'Failed to fetch data',
+                'status' => $response->status(),
+                'message' => $response->body(),
+            ], $response->status());
+        }
+    }
+    public function getSitsUrl($type = null){
+        $apiUrl    =   $this->sitsApiBaseUrl . 'sits-get-feed-url';
+
+        $response  =   Http::withHeaders([
+            'Authorization' => 'Bearer ' . $this->apiToken,
+            'Accept'        => 'application/json',
+        ])->get($apiUrl, [
+            'type' => $type
+        ]);
+
+        if ($response->successful()) {
+            $data  =    $response->json();
+            return response()->json($data, 200);
+        } else {
+            // Return a structured error response
+            return response()->json([
+                'error' => 'Failed to fetch data',
+                'status' => $response->status(),
+                'message' => $response->body(),
+            ], $response->status());
+        }
+    }
+    public function getSitsApiToken(){
+
+        $apiUrl    =   $this->sitsApiBaseUrl . 'sits-get-api-token';
+
+        $response  =   Http::withHeaders([
+            'Authorization' => 'Bearer ' . $this->apiToken,
+            'Accept'        => 'application/json',
+        ])->post($apiUrl);
+
+        if ($response->successful()) {
+            $data  =    $response->json();
+            return response()->json($data, 200);
+        } else {
+            // Return a structured error response
+            return response()->json([
+                'error' => 'Failed to fetch data',
+                'status' => $response->status(),
+                'message' => $response->body(),
+            ], $response->status());
+        }
     }
 }
