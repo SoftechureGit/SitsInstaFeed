@@ -17,12 +17,9 @@
     @yield('styles')
 </head>
 <body>
-    {{-- <header class="header">
-        <div>
-            <h1>SITS Insta-Feed</h1>
-        </div>
-    </header> --}}
+   
   @yield('section')
+  
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" ></script>
   @yield('script')
 </body>

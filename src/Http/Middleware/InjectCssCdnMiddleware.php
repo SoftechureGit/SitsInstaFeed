@@ -13,8 +13,6 @@ class InjectCssCdnMiddleware
             $content = $response->getContent();
             $cssCdnLink = '<link rel="stylesheet" href="https://www.website4test.com/social_feed/package-cdn/css-cdn/sits-widget.css">';
             $jsCdnLink = '<script src="https://www.website4test.com/social_feed/package-cdn/js-cdn/sits-widget.js"></script>';
-            // Inject the CDN link before the closing </head> tag
-            //$content = str_replace('</head>', $cssCdnLink . '</head>', $content);
             $content = str_replace('</head>', $cssCdnLink . '</head>', $content);
             $content = str_replace('</body>', $jsCdnLink . '</body>', $content);
 

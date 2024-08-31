@@ -28,6 +28,7 @@ class SitsInstaFeedServiceProvider extends ServiceProvider
         parent::__construct($app);
         $this->sitsApiBaseUrl = 'https://website4test.com/social_feed/socialFeed/api/';
         $this->apiToken = config('sits_insta_feed.api_token');
+        $this->userDomain = request()->getHost();
     }
 
     /**
@@ -86,7 +87,9 @@ class SitsInstaFeedServiceProvider extends ServiceProvider
         $response  =   Http::withHeaders([
             'Authorization' => 'Bearer ' . $this->apiToken,
             'Accept'        => 'application/json',
-        ])->post($apiUrl);
+        ])->post($apiUrl, [
+            'user_domain'   => $this->userDomain,
+        ]);
 
         if ($response->successful()) {
             $data  =    $response->json();
@@ -107,7 +110,8 @@ class SitsInstaFeedServiceProvider extends ServiceProvider
             'Authorization' => 'Bearer ' . $this->apiToken,
             'Accept'        => 'application/json',
         ])->get($apiUrl, [
-            'type' => $type
+            'type' => $type,
+            'user_domain'   => $this->userDomain,
         ]);
 
         if ($response->successful()) {
@@ -152,6 +156,7 @@ class SitsInstaFeedServiceProvider extends ServiceProvider
             'layout_type' => $layoutType,
             'number_of_posts' => $numberOfPosts,
             'media_type' => $mediaType,
+            'user_domain'   => $this->userDomain,
         ];
         $apiUrl    =   $this->sitsApiBaseUrl . 'sits-get-component-data';
 
@@ -175,17 +180,19 @@ class SitsInstaFeedServiceProvider extends ServiceProvider
     }
 
     public function getSitsContent($type = null, $mediaType = null, $numberOfPosts = null){
+        //dd($this->userDomain);
         $apiUrl    =   $this->sitsApiBaseUrl . 'sits-get-content';
-// dd($number_of_posts);
+
         $response  =   Http::withHeaders([
             'Authorization' => 'Bearer ' . $this->apiToken,
             'Accept'        => 'application/json',
-        ])->get($apiUrl, [
-            'type' => $type,
-            'media_type' => $mediaType,
-            'number_of_posts' => $numberOfPosts
+            ])->get($apiUrl, [
+                'type' => $type,
+                'media_type' => $mediaType,
+                'number_of_posts' => $numberOfPosts,
+                'user_domain'   => $this->userDomain,
         ]);
-        // dd($response->json());
+     //  dd($response->json());
         if ($response->successful()) {
             $data  =    $response->json();
             // return response()->json($data, 200);

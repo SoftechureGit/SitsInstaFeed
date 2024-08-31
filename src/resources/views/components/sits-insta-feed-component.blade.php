@@ -1,7 +1,3 @@
-
-
-
-
 <div class="sits-slider-container">
     <div class="sits-slider-wrapper">
         @foreach ($someData ?? [] as $row)
