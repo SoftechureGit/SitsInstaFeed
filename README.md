@@ -6,7 +6,7 @@ The `sits-insta-feed` package provides a simple way to integrate Instagram feeds
 
 1. **Create a Laravel Project**
 
-   Set your base URL and asset URL as needed.
+   Set your `APP_URL` and `ASSET_URL` in `.env` file as needed.
 
 2. **Install the Package**
 
@@ -50,13 +50,15 @@ The `sits-insta-feed` package provides a simple way to integrate Instagram feeds
    /sits-insta-feed-home
    ```
 
-   Follow the on-screen instructions to receive an API token. Once you have the token, update the `config/sits_insta_feed.php` configuration file with the token:
+   Follow the on-screen instructions to generate an API token. Once you have completes the process, check that `config/sits_insta_feed.php` file get updated.
 
    ```bash
     return [
     'api_token' => 'your_copied_api_token',
     ];
    ```
+
+   `Note:-` if the `config/sits_insta_feed.php` does not have the api token repeat the step if needed.
 
 ## Usage
 
@@ -70,34 +72,30 @@ The `sits-insta-feed` package provides a simple way to integrate Instagram feeds
 
 2. **Fetch Feed Data**
 
-Create a method in your controller to fetch and return the Instagram feed data. Example:
-
-    ```bash
-    public function home() {
-        $provider = new SitsInstaFeedServiceProvider(app());
-        return $provider->getSitsFeedJson();
-    }
-    ```
-    Replace home with the appropriate method name or context where you need to display the Instagram feed data.
-
-3. **Functions You Can Call**
-
-   a. To fetech the URL of the posts of link account you can use the
+   Create a method in your controller to fetch and return the Instagram feed data. Example:
 
    ```bash
-    getSitsUrl($type);
+      public function home() {
+          $provider = new SitsInstaFeedServiceProvider(app());
+          return $provider->getSitsFeedJson();
+      }
+   ```
+
+   Replace home with the appropriate method name or context where you need to display the Instagram feed data.
+
+3. **Get HTML content**
+
+   To fetch the `html` content of the posts of link account with predefine widgit's, you can use the
+
+   ```bash
+    getSitsContent('widgit_type', 'media_type', 'number_of_post');
 
     $provider = new SitsInstaFeedServiceProvider(app());
-    return $provider->getSitsUrl('slider');
+    $data = $provider->getSitsContent('widgit_type', 'media-type', 'number_of_post');
+    $htmlContnent = $data->data;
    ```
 
-   Wher type can be `"slider"` or `"grid"`, it will return the appropriate url according to input.
-
-   b. To fetech the json of the posts of link account you can use the
-
-   ```bash
-   getSitsFeedJson();
-
-   $provider = new SitsInstaFeedServiceProvider(app());
-   return $provider->getSitsFeedJson();
-   ```
+   Where arguments holdes the values like:
+   `widgit_type` : `slider` and `grid`, it means the post content comes in these layout.
+   `media_type` : It is the type of media of your posts weather you want only `image` or `video`.
+   `number_of_post` : How many posts you want to fetch.
