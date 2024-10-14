@@ -18,5 +18,10 @@
     "require": {
         "laravel/socialite": "^5.2",
         "guzzlehttp/guzzle": "^7.0"
+    },
+    "archive": {
+        "exclude": [
+            "/document"
+        ]
     }
 }
