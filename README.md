@@ -1,4 +1,6 @@
-[View Document](https://htmlpreview.github.io/?https://github.com/SoftechureGit/SitsInstaFeed/blob/main/docs/index.html).
+<!-- [View Document](https://htmlpreview.github.io/?https://github.com/SoftechureGit/SitsInstaFeed/blob/main/docs/index.html). -->
+
+<a href="https://htmlpreview.github.io/?https://github.com/SoftechureGit/SitsInstaFeed/blob/main/docs/index.html" target="_blank">Document</a>
 
 # SITS INSTA FEED PACKAGE
 
