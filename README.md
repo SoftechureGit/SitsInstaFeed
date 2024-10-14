@@ -1,4 +1,4 @@
-[View Document](document/document.html).
+[View Document](https://raw.githubusercontent.com/SoftechureGit/SitsInstaFeed/main/document/document.html).
 
 # SITS INSTA FEED PACKAGE
 
