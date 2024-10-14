@@ -1,101 +1,112 @@
-# Sits Insta Feed Package
+# SITS INSTA FEED PACKAGE test
 
 The `sits-insta-feed` package provides a simple way to integrate Instagram feeds into your Laravel project. Follow the steps below to install and use the package.
 
 ## Installation
 
-1. **Create a Laravel Project**
+1.  **Create a Laravel Project**
 
-   Set your `APP_URL` and `ASSET_URL` in `.env` file as needed.
+    Set your `APP_URL` and `ASSET_URL` in `.env` file as needed.
 
-2. **Install the Package**
+2.  **Install the Package**
 
-   Run the following command to require the package via Composer:
+    Run the following command to require the package via Composer:
 
-   ```bash
-   composer require sits/sits-insta-feed
-   ```
+    composer require sits/sits-insta-feed
 
-3. **Register Provider**
+3.  **Register Provider**
 
-   Open the `config/app.php` file and add the service provider to the providers array:
+    Open the `config/app.php` file and add the service provider to the providers array:
 
-   ```bash
-   'providers' => [
-    Sits\SitsInstaFeed\SitsInstaFeedServiceProvider::class,
-   ],
-   ```
+        'providers' => [
+            Sits\SitsInstaFeed\SitsInstaFeedServiceProvider::class,
+        ],
 
-   If your laravel version is 11 or higher than you have to register the provider in `bootstrap/providers.php` like:
+    **Note:** If your Laravel version is 11 or higher, register the provider in `bootstrap/providers.php`:
 
-   ```bash
-   return [
-       Sits\SitsInstaFeed\SitsInstaFeedServiceProvider::class,
-   ];
-   ```
+        return [
+            Sits\SitsInstaFeed\SitsInstaFeedServiceProvider::class,
+        ];
 
-4. **Publish Package Assets**
+4.  **Publish Package Assets**
 
-   Publish the package assets by running the following Artisan command:
+    Publish the package assets by running the following Artisan command:
 
-   ```bash
-   php artisan vendor:publish --provider="Sits\SitsInstaFeed\SitsInstaFeedServiceProvider"
-   ```
+    php artisan vendor:publish --provider="Sits\\SitsInstaFeed\\SitsInstaFeedServiceProvider"
 
-5. **Obtain API Token**
+5.  **Obtain API Token**
 
-   Access the URL to complete the setup and obtain your API token:
+    - **Initial Setup**
 
-   ```bash
-   /sits-insta-feed-home
-   ```
+      Navigate to `{website-url}/sits-insta-feed-home` in your browser
 
-   Follow the on-screen instructions to generate an API token. Once you have completes the process, check that `config/sits_insta_feed.php` file get updated.
+      1.  Click "Continue with Instagram"
+      2.  You will be redirected to the social feed login page
 
-   ```bash
-    return [
-    'api_token' => 'your_copied_api_token',
-    ];
-   ```
+    - **Authentication** **For New Users:**
+      1.  Click "Register"
+      2.  Create a new account
+      3.  Log in with your newly created credentials
+    - **For Existing Users:**
+      1.  Simply log in with your existing credentials
+    - **Connecting Instagram**
+      1.  After successful login, locate the Instagram tab in the sidebar
+      2.  Click "Link Instagram Account"
+      3.  Log in to your Instagram account when prompted
+      4.  Grant the necessary permissions
+      5.  You will be redirected back to your project URL
+    - **Verification**
 
-   `Note:-` if the `config/sits_insta_feed.php` does not have the api token repeat the step if needed.
+      After completing the process, verify that the configuration file has been updated:
+
+          config/sits_insta_feed.php
+
+    - **Troubleshooting**
+
+      If you encounter any issues:
+
+      - Ensure all permissions were granted correctly
+      - Verify that you're logged into the correct Instagram account
+      - Check your internet connection
+      - Clear browser cache if needed
+
+    **Note:** If the `config/sits_insta_feed.php` does not have the API token, repeat the step if needed.
 
 ## Usage
 
-1. **Import the Service Provider**
+1.  **Import the Service Provider**
 
-   In your controller or wherever you want to use the package, import the `SitsInstaFeedServiceProvider`:
+    In your controller or wherever you want to use the package, import the `SitsInstaFeedServiceProvider`:
 
-   ```bash
-   use Sits\SitsInstaFeed\SitsInstaFeedServiceProvider;
-   ```
+        use Sits\SitsInstaFeed\SitsInstaFeedServiceProvider;
 
-2. **Fetch Feed Data**
+2.  **Fetch Feed Data**
 
-   Create a method in your controller to fetch and return the Instagram feed data. Example:
+    Create a method in your controller to fetch and return the Instagram feed data:
 
-   ```bash
-      public function home() {
-          $provider = new SitsInstaFeedServiceProvider(app());
-          return $provider->getSitsFeedJson();
-      }
-   ```
+        public function home() {
+            $provider = new SitsInstaFeedServiceProvider(app());
+            return $provider->getSitsFeedJson();
+        }
 
-   Replace home with the appropriate method name or context where you need to display the Instagram feed data.
+3.  **Get HTML Content**
 
-3. **Get HTML content**
+    To fetch the HTML content of the posts with predefined widgets:
 
-   To fetch the `html` content of the posts of link account with predefine widgit's, you can use the
+        $provider = new SitsInstaFeedServiceProvider(app());
+        $data = $provider->getSitsContent('widget_type', 'media-type', 'number_of_post');
+        $htmlContent = $data->data;
 
-   ```bash
-    getSitsContent('widgit_type', 'media_type', 'number_of_post');
+    Arguments explanation:
 
-    $provider = new SitsInstaFeedServiceProvider(app());
-    $data = $provider->getSitsContent('widgit_type', 'media-type', 'number_of_post');
-    $htmlContnent = $data->data;
-   ```
+    - widget_type: 'slider' or 'grid' layout
 
-   Where arguments holdes the values like:
-   `widgit_type` : `slider` and `grid`, it means the post content comes in these layout.
-   `media_type` : It is the type of media of your posts weather you want only `image` or `video`.
-   `number_of_post` : How many posts you want to fetch.
+      <!-- **Slider layout** ![grid](./asset/slider.png) -->
+
+      <!-- **Grid layout** ![slider](./asset/grid.png) -->
+
+    - media_type: 'image' or 'video'
+
+      If you want all media types, leave it blank. `''`
+
+    - number_of_post: Number of posts to fetch
