@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sits Insta Feed Package Documentation</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-tomorrow.min.css" rel="stylesheet" />
+    <style>
+        :root {
+            --primary-color: #103d4a;
+            --secondary-color: #185468;
+            --accent-color: #2a97c0;
+            --text-color: #333333;
+            --light-bg: #f5f7f9;
+            --code-bg: #1e1e1e;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-bg);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 3px solid var(--accent-color);
+            padding-bottom: 0.5rem;
+        }
+
+        h2 {
+            color: var(--secondary-color);
+            font-size: 1.8rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        code {
+            background-color: var(--light-bg);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: 'Fira Code', 'Courier New', Courier, monospace;
+            color: var(--secondary-color);
+        }
+
+        pre {
+            background-color: var(--code-bg);
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        pre code {
+            background-color: transparent;
+            padding: 0;
+            color: #e6e6e6;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .code-block {
+            position: relative;
+            margin: 1.5rem 0;
+        }
+
+        .code-block::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            pointer-events: none;
+        }
+
+        .terminal-code {
+            background-color: #1a1a1a;
+            color: #33ff00;
+            font-family: 'Fira Code', 'Courier New', Courier, monospace;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .terminal-code::before {
+            content: '$ ';
+            color: #666;
+        }
+
+        ol {
+            padding-left: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 1rem;
+        }
+
+        strong {
+            color: var(--secondary-color);
+        }
+
+        .note {
+            background-color: var(--light-bg);
+            padding: 1rem;
+            border-left: 4px solid var(--accent-color);
+            margin: 1rem 0;
+        }
+
+        .parameter {
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+
+        .image-container img {
+            height: auto;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>SITS INSTA FEED PACKAGE</h1>
+
+        <p>The <code>sits-insta-feed</code> package provides a simple way to integrate Instagram feeds into your Laravel
+            project. Follow the steps below to install and use the package.</p>
+
+        <h2>Installation</h2>
+        <ol>
+            <li>
+                <strong>Create a Laravel Project</strong>
+                <p>Set your <code>APP_URL</code> and <code>ASSET_URL</code> in <code>.env</code> file as needed.</p>
+            </li>
+            <li>
+                <strong>Install the Package</strong>
+                <p>Run the following command to require the package via Composer:</p>
+                <div class="terminal-code">composer require sits/sits-insta-feed</div>
+            </li>
+            <li>
+                <strong>Register Provider</strong>
+                <p>Open the <code>config/app.php</code> file and add the service provider to the providers array:</p>
+                <div class="code-block">
+                    <pre><code>'providers' => [
+    Sits\SitsInstaFeed\SitsInstaFeedServiceProvider::class,
+],</code></pre>
+                </div>
+                <div class="note">
+                    <strong>Note:</strong>
+                    <span>If your Laravel version is 11 or higher, register the provider in
+                        <code>bootstrap/providers.php</code>:
+                    </span>
+                </div>
+                <div class="code-block">
+                    <pre><code>return [
+    Sits\SitsInstaFeed\SitsInstaFeedServiceProvider::class,
+];</code></pre>
+                </div>
+            </li>
+            <li>
+                <strong>Publish Package Assets</strong>
+                <p>Publish the package assets by running the following Artisan command:</p>
+                <div class="terminal-code" style="overflow-x: auto;"> php artisan vendor:publish
+                    --provider="Sits\SitsInstaFeed\SitsInstaFeedServiceProvider"</div>
+            </li>
+            <li>
+                <strong>Obtain API Token</strong>
+                <!-- test -->
+                <div class="">
+                    <ul>
+                        <li>
+                            <strong>Initial Setup</strong>
+                            <p>Navigate to <code>{website-url}/sits-insta-feed-home</code> in your browser</p>
+                            <ol>
+                                <li>Click "Continue with Instagram"</li>
+                                <li>You will be redirected to the social feed login page</li>
+                            </ol>
+                        </li>
+                        <li>
+                            <strong>Authentication</strong>
+
+                            <strong> For New Users:</strong>
+                            <ol>
+                                <li>Click "Register"</li>
+                                <li>Create a new account</li>
+                                <li>Log in with your newly created credentials</li>
+                            </ol>
+                        </li>
+                        <li>
+                            <strong>For Existing Users:</strong>
+                            <ol>
+                                <li>Simply log in with your existing credentials</li>
+                            </ol>
+
+                        </li>
+                        <li>
+                            <strong>Connecting Instagram</strong>
+                            <ol>
+                                <li>After successful login, locate the Instagram tab in the sidebar</li>
+                                <li>Click "Link Instagram Account"</li>
+                                <li>Log in to your Instagram account when prompted</li>
+                                <li>Grant the necessary permissions</li>
+                                <li>You will be redirected back to your project URL</li>
+                            </ol>
+                        </li>
+                        <li>
+                            <strong>Verification</strong>
+                            <p>After completing the process, verify that the configuration file has been updated:</p>
+                            <div class="code-block">
+                                <pre><code>config/sits_insta_feed.php</code></pre>
+                            </div>
+                        </li>
+                        <li>
+                            <strong>Troubleshooting</strong>
+                            <p>If you encounter any issues:</p>
+                            <ul>
+                                <li>Ensure all permissions were granted correctly</li>
+                                <li>Verify that you're logged into the correct Instagram account</li>
+                                <li>Check your internet connection</li>
+                                <li>Clear browser cache if needed</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <!-- test end -->
+
+                <div class="note">
+                    <strong>Note:</strong> If the <code>config/sits_insta_feed.php</code> does not have the API token,
+                    repeat the step if needed.
+                </div>
+            </li>
+        </ol>
+
+        <h2>Usage</h2>
+        <ol>
+            <li>
+                <strong>Import the Service Provider</strong>
+                <p>In your controller or wherever you want to use the package, import the
+                    <code>SitsInstaFeedServiceProvider</code>:
+                </p>
+                <div class="code-block">
+                    <pre><code>use Sits\SitsInstaFeed\SitsInstaFeedServiceProvider;</code></pre>
+                </div>
+            </li>
+            <li>
+                <strong>Fetch Feed Data</strong>
+                <p>Create a method in your controller to fetch and return the Instagram feed data:</p>
+                <div class="code-block">
+                    <pre><code>public function home() {
+    $provider = new SitsInstaFeedServiceProvider(app());
+    return $provider->getSitsFeedJson();
+}</code></pre>
+                </div>
+            </li>
+            <li>
+                <strong>Get HTML Content</strong>
+                <p>To fetch the HTML content of the posts with predefined widgets:</p>
+                <div class="code-block">
+                    <pre><code>$provider = new SitsInstaFeedServiceProvider(app());
+$data = $provider->getSitsContent('widget_type', 'media-type', 'number_of_post');
+$htmlContent = $data->data;</code></pre>
+                </div>
+                <p>Arguments explanation:</p>
+                <ul>
+                    <li>
+                        <span class="parameter">widget_type</span><span>: 'slider' or 'grid' layout</span>
+                        <div class="image-container">
+                            <strong>Slider layout</strong>
+                            <img src="./asset/slider.png" alt="grid">
+                        </div>
+                        <div class="image-container">
+                            <strong>Grid layout</strong>
+                            <img src="./asset/grid.png" alt="slider">
+                        </div>
+                    </li>
+                    <li>
+                        <span class="parameter">media_type</span><span>: 'image' or 'video'</span>
+                        <div class="note">If you want all media types, leave it blank. <code>''</code></div>
+                    </li>
+                    <li><span class="parameter">number_of_post</span>: Number of posts to fetch</li>
+                </ul>
+            </li>
+        </ol>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-core.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/plugins/autoloader/prism-autoloader.min.js"></script>
+</body>
+
+</html>
