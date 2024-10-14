@@ -1,4 +1,4 @@
-[View Document](https://raw.githubusercontent.com/SoftechureGit/SitsInstaFeed/main/document/index.html).
+[View Document](https://htmlpreview.github.io/?https://github.com/SoftechureGit/SitsInstaFeed/blob/main/docs/index.html).
 
 # SITS INSTA FEED PACKAGE
 
@@ -103,9 +103,9 @@ The `sits-insta-feed` package provides a simple way to integrate Instagram feeds
 
     - widget_type: 'slider' or 'grid' layout
 
-      **Slider layout** ![grid](https://raw.githubusercontent.com/SoftechureGit/SitsInstaFeed/main/document/asset/grid.png)
+      **Slider layout** ![grid](https://raw.githubusercontent.com/SoftechureGit/SitsInstaFeed/main/docs/asset/grid.png)
 
-      **Grid layout** ![slider](https://raw.githubusercontent.com/SoftechureGit/SitsInstaFeed/main/document/asset/slider.png)
+      **Grid layout** ![slider](https://raw.githubusercontent.com/SoftechureGit/SitsInstaFeed/main/docs/asset/slider.png)
 
     - media_type: 'image' or 'video'
 
