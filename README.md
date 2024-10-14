@@ -1,3 +1,5 @@
+[View Document](document/document.html).
+
 # SITS INSTA FEED PACKAGE
 
 The `sits-insta-feed` package provides a simple way to integrate Instagram feeds into your Laravel project. Follow the steps below to install and use the package.
